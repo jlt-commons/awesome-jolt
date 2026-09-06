@@ -125,6 +125,8 @@ Projects maintained at [jlt-commons](https://jlt-commons.github.io), a community
 Independently maintained software built with Jolt, hosted and maintained outside jlt-commons and jolt-lang.
 
 - [talk](https://gitlab.com/nandithebull/talk) - An XMPP server speaking RFC 6120 (core) and RFC 6121 (IM and presence): SASL, SCRAM-SHA-256, resource binding, rosters, presence, offline delivery, and a Prosody-inspired module architecture.
+- [frq](https://gitlab.com/nandithebull/frq) - A [freeq](https://github.com/codegod100/freeq) IRC client, its screens built as [glimmer](https://github.com/jolt-lang/glimmer) components over Vidya/egui, ported from a Rust client of the same shape. Runs unchanged on desktop, in a terminal, and on Android.
+- [jolt-native](https://gitlab.com/nandithebull/jolt-native) - Native capabilities for Jolt, one shared object per capability: a retained-tree UI ABI over egui (also paintable to a terminal) and freeq's AV media plane over MoQ. What frq links against.
 
 ## JVM and Clojure Libraries That Run on Jolt
 
