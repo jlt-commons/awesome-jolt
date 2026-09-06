@@ -18,6 +18,7 @@ or jump straight to [Getting Started](https://jolt-lang.net/docs/getting-started
 - [Getting Started](#getting-started)
 - [Official Libraries](#official-libraries)
 - [Community Projects](#community-projects)
+- [Applications](#applications)
 - [JVM and Clojure Libraries That Run on Jolt](#jvm-and-clojure-libraries-that-run-on-jolt)
 - [Tooling, Testing and Examples](#tooling-testing-and-examples)
 - [Documentation and Guides](#documentation-and-guides)
@@ -118,6 +119,12 @@ Projects maintained at [jlt-commons](https://jlt-commons.github.io), a community
 ### Concurrency
 
 - [ebb](https://github.com/jlt-commons/ebb) - A port of [missionary](https://github.com/leonoel/missionary): composable tasks and flows with real cancellation and glitch-free dataflow, running on Chez fibers.
+
+## Applications
+
+Independently maintained software built with Jolt, hosted and maintained outside jlt-commons and jolt-lang.
+
+- [talk](https://gitlab.com/nandithebull/talk) - An XMPP server speaking RFC 6120 (core) and RFC 6121 (IM and presence): SASL, SCRAM-SHA-256, resource binding, rosters, presence, offline delivery, and a Prosody-inspired module architecture.
 
 ## JVM and Clojure Libraries That Run on Jolt
 
