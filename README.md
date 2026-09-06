@@ -239,7 +239,7 @@ Other projects worth knowing about while exploring the Jolt ecosystem.
 
 ## Contributing
 
-Contributions welcome. Read the [contribution guidelines](CONTRIBUTING.md) first, then open a pull request.
+Contributions welcome. Read the [contribution guidelines](https://github.com/jlt-commons/awesome-jolt/blob/main/CONTRIBUTING.md) first, then open a pull request.
 
 ## License
 
@@ -247,6 +247,6 @@ Contributions welcome. Read the [contribution guidelines](CONTRIBUTING.md) first
 
 To the extent possible under law, the contributors to this list have waived
 all copyright and related or neighboring rights to it, under the
-[CC0 1.0 Universal](LICENSE) public domain dedication. This list only points
+[CC0 1.0 Universal](https://github.com/jlt-commons/awesome-jolt/blob/main/LICENSE) public domain dedication. This list only points
 to and describes other people's work; each linked project keeps its own
 license, so check a repository before depending on it.
