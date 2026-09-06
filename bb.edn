@@ -1,0 +1,60 @@
+;; Babashka runner for awesome-jolt.
+;;
+;;   bb site:build        build the documentation site into _site/
+;;   bb site:serve [port] build and serve at http://localhost:3000
+;;   bb site:clean        delete the _site/ build output
+;;
+;; This project is a curated list, not code — these tasks exist only for
+;; local preview of the docs site. It's built and published by CI
+;; (.github/workflows/site.yml, which pins an engine tag), so a checkout of
+;; the engine on disk is needed only here, never in CI.
+;; NOTE: task bodies are read by babashka's EDN reader, which does NOT support
+;; #"regex", @deref, or #(...) reader macros. Use (fn [x] ...) etc.
+{:min-bb-version "1.3.0"
+
+ :tasks
+ {:init
+  (do
+    (require '[babashka.fs :as fs])
+
+    (def docs-engine-repo "https://github.com/jlt-commons/docs-engine")
+
+    (defn docs-engine-dir
+      "Where the engine is checked out: $JLT_DOCS_ENGINE, else a sibling
+       directory, else the usual spot. nil when none of them exist."
+      []
+      (let [home (System/getProperty "user.home")]
+        (->> [(System/getenv "JLT_DOCS_ENGINE")
+              "../docs-engine"
+              (str home "/dev/jlt-commons/docs-engine")]
+             (remove nil?)
+             (filter (fn [d] (fs/exists? (fs/file d "bb.edn"))))
+             first)))
+
+    (defn site-task
+      "Runs one of the engine's tasks against this project."
+      [task & args]
+      (if-let [engine (docs-engine-dir)]
+        (let [argv (into ["bb" task (str (fs/cwd))] (remove nil? args))
+              res  (apply shell {:dir (str engine) :continue true} argv)]
+          (when-not (zero? (:exit res)) (System/exit (:exit res))))
+        (do
+          (println "The docs engine is not checked out anywhere I looked:")
+          (println "  $JLT_DOCS_ENGINE, ../docs-engine, ~/dev/jlt-commons/docs-engine")
+          (println)
+          (println "  git clone" docs-engine-repo "../docs-engine")
+          (println)
+          (println "CI does not need this — it checks the engine out itself.")
+          (System/exit 1)))))
+
+  site:build
+  {:doc "Build the documentation site into _site/ (needs a docs-engine checkout)"
+   :task (site-task "build")}
+
+  site:serve
+  {:doc "Build the docs site and serve it at http://localhost:3000 (bb site:serve [port])"
+   :task (site-task "serve" (first *command-line-args*))}
+
+  site:clean
+  {:doc "Delete the _site/ build output"
+   :task (site-task "clean")}}}

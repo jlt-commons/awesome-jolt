@@ -1,0 +1,35 @@
+name: Site
+
+# Builds the documentation site on every pull request, and publishes it to
+# GitHub Pages from main.
+#
+# The build itself lives in jlt-commons/ci-builds, shared by every project so
+# the scaffolding is fixed in one place. What stays here is what is actually
+# this project's: the content under docs/, its config in docs/site.edn, the
+# base path below, and the assertions in docs/check-site.sh.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Deploys must not race, and a half-applied Pages deployment is worse than a
+# slightly stale one, so main is never cancelled. Pull request builds are
+# scoped per ref and cancel their own earlier runs.
+concurrency:
+  group: site-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+jobs:
+  site:
+    uses: jlt-commons/ci-builds/.github/workflows/site.yml@main
+    with:
+      base-path: /awesome-jolt
+    permissions:
+      contents: read
+      pages: write
+      id-token: write

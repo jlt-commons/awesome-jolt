@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block title %}{{site-title}}{% endblock %}
+{% block body-class %}home{% endblock %}
+
+{# This overrides the engine's own generic-home.html (a project template
+   overrides any engine template sharing its filename). The only change
+   from the engine's version is the .tag-cloud nav below; :content and
+   :toc still arrive from site.generic-home/render exactly as they do for
+   a project with no override at all, so README.md keeps rendering
+   itself, TOC and all.
+
+   The tag cloud's styles are page-scoped rather than added to the
+   engine's shared screen.css, since "categories sized by how much is
+   under each" is specific to an awesome-list homepage. Built only from
+   this README's real subject-matter sections (the housekeeping ones —
+   Contributing, License, Community and Support — aren't topics, so they
+   aren't tags). Sizes come from a plain item-count tally per section,
+   done by hand against the README on 2026-09-06; re-tally if the list
+   grows enough to shift a tier. Uses only the engine's own theme tokens,
+   so it follows light/dark exactly like the rest of the page. #}
+{% block head %}
+<style>
+  .tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.6rem 1.25rem;
+    margin: 0 0 2rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--bg-raised);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+  .tag-cloud a {
+    color: var(--text-dim);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.15s ease, border-color 0.15s ease;
+    white-space: nowrap;
+    line-height: 1.4;
+  }
+  .tag-cloud a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+  .tag-cloud .tag-1 { font-size: 0.8125rem; }
+  .tag-cloud .tag-2 { font-size: 1.0625rem; }
+  .tag-cloud .tag-3 { font-size: 1.375rem; font-weight: 600; }
+  .tag-cloud .tag-4 { font-size: 1.75rem; font-weight: 700; color: var(--text); }
+  .tag-cloud .tag-4:hover { color: var(--accent); }
+  .tag-cloud .count {
+    font-size: 0.6875em;
+    font-weight: 400;
+    color: var(--text-dim);
+    margin-left: 0.2em;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<section>
+  <div class="inner">
+    <nav class="tag-cloud" aria-label="Browse by topic">
+      <a class="tag-1" href="#language-and-compiler">Language and Compiler<span class="count">1</span></a>
+      <a class="tag-1" href="#getting-started">Getting Started<span class="count">3</span></a>
+      <a class="tag-3" href="#official-libraries">Official Libraries<span class="count">25</span></a>
+      <a class="tag-2" href="#community-projects">Community Projects<span class="count">8</span></a>
+      <a class="tag-4" href="#jvm-and-clojure-libraries-that-run-on-jolt">JVM and Clojure Libraries That Run on Jolt<span class="count">44</span></a>
+      <a class="tag-1" href="#tooling-testing-and-examples">Tooling, Testing and Examples<span class="count">3</span></a>
+      <a class="tag-3" href="#documentation-and-guides">Documentation and Guides<span class="count">17</span></a>
+      <a class="tag-1" href="#ecosystem-infrastructure">Ecosystem Infrastructure<span class="count">4</span></a>
+      <a class="tag-1" href="#related-projects">Related Projects<span class="count">3</span></a>
+    </nav>
+    {% if toc %}
+    <nav class="toc">
+      <h2>Contents</h2>
+      {{toc|safe}}
+    </nav>
+    {% endif %}
+    <div class="doc-content">
+      {{content|safe}}
+    </div>
+  </div>
+</section>
+{% endblock %}
