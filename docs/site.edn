@@ -1,0 +1,22 @@
+;; Configuration for the documentation site, read by the jlt-commons
+;; docs-engine (https://github.com/jlt-commons/docs-engine).
+;;
+;; Build it locally with `bb site:serve`. CI builds and publishes it from
+;; .github/workflows/site.yml.
+{;; :base-path is what makes this a project site rather than an org one.
+ ;; The site is served at https://jlt-commons.github.io/awesome-jolt/, so
+ ;; every URL the engine emits needs that prefix. Leave it out and the
+ ;; pages still render, but each one loads the ORGANIZATION site's
+ ;; stylesheet and every image 404s.
+ :base-path   "/awesome-jolt"
+
+ :title       "Awesome Jolt"
+ :description "A curated list of libraries, tools, and resources for Jolt, a Clojure implementation that runs on Chez Scheme."}
+
+;; No :asset-dirs: this list has no images or demos to publish.
+;;
+;; No :home-template, but docs/templates/generic-home.html DOES exist — it
+;; overrides the engine's own template of that name (a project template
+;; overrides any engine template sharing its filename). The engine still
+;; renders README.md itself exactly as the generic homepage always has;
+;; the override only adds a tag cloud above it.

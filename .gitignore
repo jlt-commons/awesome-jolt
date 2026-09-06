@@ -1,3 +1,11 @@
 .DS_Store
 .claude/
 .remember/
+
+# Generated documentation site (bb site:build). Published by CI from main;
+# never committed, since a stale build in the tree is worse than none.
+_site/
+
+# A local checkout of jlt-commons/docs-engine, if you clone it here rather
+# than as a sibling. CI checks it out itself.
+.docs-engine/
