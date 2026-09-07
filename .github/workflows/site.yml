@@ -29,6 +29,11 @@ jobs:
     uses: jlt-commons/ci-builds/.github/workflows/site.yml@main
     with:
       base-path: /awesome-jolt
+      # v0.3.0 adds the default Contributing page to every project's guide
+      # (docs-engine README, "The default Contributing page"). Pinned here
+      # instead of riding the shared workflow's own default so this
+      # project's build stays reproducible when that default moves again.
+      docs-engine-ref: v0.3.0
     permissions:
       contents: read
       pages: write
