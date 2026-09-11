@@ -124,6 +124,7 @@ Projects maintained at [jlt-commons](https://jlt-commons.github.io), a community
 
 Independently maintained software built with Jolt, hosted and maintained outside jlt-commons and jolt-lang.
 
+- [lambda-mvp-jlt](https://github.com/b12n-oss/lambda-mvp-jlt) - An AWS Lambda custom runtime for Jolt, implementing the `provided.al2023` contract in about 60 lines of Clojure over Jolt's built-in HTTP client, with a benchmarking tool for cold vs. warm boot time.
 - [talk](https://gitlab.com/nandithebull/talk) - An XMPP server speaking RFC 6120 (core) and RFC 6121 (IM and presence): SASL, SCRAM-SHA-256, resource binding, rosters, presence, offline delivery, and a Prosody-inspired module architecture.
 - [frq](https://gitlab.com/nandithebull/frq) - A [freeq](https://github.com/codegod100/freeq) IRC client, its screens built as [glimmer](https://github.com/jolt-lang/glimmer) components over Vidya/egui, ported from a Rust client of the same shape. Runs unchanged on desktop, in a terminal, and on Android.
 - [jolt-native](https://gitlab.com/nandithebull/jolt-native) - Native capabilities for Jolt, one shared object per capability: a retained-tree UI ABI over egui (also paintable to a terminal) and freeq's AV media plane over MoQ. What frq links against.
@@ -227,6 +228,7 @@ Shared tooling behind the jlt-commons organization, so no individual project mai
 
 - [docs-engine](https://github.com/jlt-commons/docs-engine) - A small Babashka static-site generator, its only external dependency `markdown-clj`, that turns a project's `docs/` markdown and a `site.edn` config into a GitHub Pages-ready site.
 - [ci-builds](https://github.com/jlt-commons/ci-builds) - A fan-out CI tool that dispatches every project's own workflow against one pinned Jolt version and renders a single pass/fail table across the org, so a Jolt release regression is caught fleet-wide rather than repo by repo.
+- [setup-jolt](https://github.com/jlt-commons/setup-jolt) - A GitHub Action that installs jolt on a runner from its prebuilt releases and verifies the published sha256, covering Linux x86_64 and macOS x86_64/arm64.
 - [meta](https://github.com/jlt-commons/meta) - Governance and the project-proposal queue: how to propose a project, volunteer to maintain one, or ask for something the org isn't doing yet.
 - [.github](https://github.com/jlt-commons/.github) - Org-wide default community health files (profile README, code of conduct, contributing guide, security policy, issue and PR templates), applied to any org repo that doesn't define its own.
 
