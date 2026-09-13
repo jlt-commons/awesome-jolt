@@ -125,9 +125,14 @@ Projects maintained at [jlt-commons](https://jlt-commons.github.io), a community
 Independently maintained software built with Jolt, hosted and maintained outside jlt-commons and jolt-lang.
 
 - [lambda-mvp-jlt](https://github.com/b12n-oss/lambda-mvp-jlt) - An AWS Lambda custom runtime for Jolt, implementing the `provided.al2023` contract in about 60 lines of Clojure over Jolt's built-in HTTP client, with a benchmarking tool for cold vs. warm boot time.
+- [lambda-mvp-jnk](https://github.com/b12n-oss/lambda-mvp-jnk) - The same custom-runtime contract implemented in [jank](https://jank-lang.org) (native Clojure via C++/Clang/LLVM) and deployed as a Lambda container image rather than a zip, since jank's toolchain needs a newer glibc than AL2023 ships.
+- [lambda-mvp-cljs](https://github.com/b12n-oss/lambda-mvp-cljs) - The same family running on AWS Lambda's managed `nodejs24.x` runtime instead of a custom one, so the whole deployable is a `shadow-cljs`-compiled handler and a zip.
+- [lambda-mvp-rst](https://github.com/b12n-oss/lambda-mvp-rst) - A fork of `lambda-mvp-jlt` that embeds a Rust capability into the runtime via [jolt-diplomat](https://github.com/jolt-lang/jolt-diplomat): the handler builds its JSON response with real `serde_json` instead of hand-assembled strings, since Jolt has no JSON library of its own.
+- [lambda-mvp-bb](https://github.com/b12n-oss/lambda-mvp-bb) - The same family in [Babashka](https://babashka.org) via [blambda](https://github.com/jmglov/blambda). Nothing is compiled ahead of time here: the handler is `require`d and interpreted at cold start by Babashka's own SCI interpreter.
 - [talk](https://gitlab.com/nandithebull/talk) - An XMPP server speaking RFC 6120 (core) and RFC 6121 (IM and presence): SASL, SCRAM-SHA-256, resource binding, rosters, presence, offline delivery, and a Prosody-inspired module architecture.
 - [frq](https://gitlab.com/nandithebull/frq) - A [freeq](https://github.com/codegod100/freeq) IRC client, its screens built as [glimmer](https://github.com/jolt-lang/glimmer) components over Vidya/egui, ported from a Rust client of the same shape. Runs unchanged on desktop, in a terminal, and on Android.
 - [jolt-native](https://gitlab.com/nandithebull/jolt-native) - Native capabilities for Jolt, one shared object per capability: a retained-tree UI ABI over egui (also paintable to a terminal) and freeq's AV media plane over MoQ. What frq links against.
+- [jolt-edge](https://gitlab.com/nandithebull/jolt-edge) - A Clojure HTTP server that runs as a WebAssembly module on [Wasmer Edge](https://wasmer.io): Jolt compiled to `wasm32-wasix`, with the source compiled on cold start and a second variant compiled ahead of time for comparison. No JVM, no JavaScript, no build step.
 
 ## JVM and Clojure Libraries That Run on Jolt
 
