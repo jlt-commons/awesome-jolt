@@ -112,7 +112,9 @@ Projects maintained at [jlt-commons](https://jlt-commons.github.io), a community
 
 ### GUI Rendering
 
-- [glitter](https://github.com/jlt-commons/glitter) - A [Replicant](https://github.com/cjohansen/replicant)-style GTK4 renderer: one state atom, a pure `state -> hiccup` view, and event handlers as data. [Docs](https://jlt-commons.github.io/glitter/).
+- [glitter-core](https://github.com/jlt-commons/glitter-core) - The natives-free two-thirds of glitter: the [Replicant](https://github.com/cjohansen/replicant)-style reconciler and `IRender`/`IMemory` protocols, with no GTK4/AppKit/anything-else toolkit dependency at all. What glitter, glitter-uikit, and uikit-demo all build on. [Docs](https://jlt-commons.github.io/glitter-core/).
+- [nexus-jolt](https://github.com/jlt-commons/nexus-jolt) - A Jolt port of [nexus](https://github.com/cjohansen/nexus): data-driven action/effect/placeholder dispatch. Not GUI-specific, but its only consumers today are glitter and friends, so it's listed here. [Docs](https://jlt-commons.github.io/nexus-jolt/).
+- [glitter](https://github.com/jlt-commons/glitter) - The GTK4 renderer built on glitter-core: one state atom, a pure `state -> hiccup` view, and event handlers as data. [Docs](https://jlt-commons.github.io/glitter/).
 - [glitter-gl](https://github.com/jlt-commons/glitter-gl) - OpenGL geometry, matrices, and shaders for glitter, plus a `:gl-area` widget to draw them in. [Docs](https://jlt-commons.github.io/glitter-gl/).
 - [glitter-uikit](https://github.com/jlt-commons/glitter-uikit) - The same renderer model driving native macOS `NSView` widgets through AppKit instead of GTK4. [Docs](https://jlt-commons.github.io/glitter-uikit/).
 - [uikit-demo](https://github.com/jlt-commons/uikit-demo) - A demo of glitter-uikit: a hub of live example windows (counter, currency converter, live FX, particle toy) built as a real macOS app bundle. [Docs](https://jlt-commons.github.io/uikit-demo/).
