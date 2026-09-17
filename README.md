@@ -205,6 +205,7 @@ Ordinary Clojure/JVM libraries confirmed to load and pass their conformance chec
 - [nrepl](https://github.com/jolt-lang/nrepl) - nREPL middleware and client for editor connections, growing Jolt's built-in nREPL server into the op set editors like CIDER expect: sessions, completion, eldoc, macroexpand, tests, stack traces.
 - [clojure-test-suite](https://github.com/jolt-lang/clojure-test-suite) - A `clojure.core` compliance test suite, originally built to characterize JVM Clojure's behavior for the [jank](https://github.com/jank-lang/jank) native-code dialect, used here to validate Jolt's own conformance.
 - [examples](https://github.com/jolt-lang/examples) - Runnable sample projects (an HTTP client and server, a Ring app, hiccup, Markdown, malli, a ray tracer, FFI) that double as a tour of the ecosystem. Each has a `deps.edn`; run one with `jolt run -m app.core` or `jolt -M:alias`.
+- [standard-clojure-style-jolt](https://github.com/crimeminister/standard-clojure-style-jolt) - A port of [Standard Clojure Style](https://github.com/oakmac/standard-clojure-style-js) to Jolt: a `standard-clj` CLI (`check`/`fix`/`list`, stdin support, `.standard-clj.edn` config) plus a library API (`format`/`parse`/`parse-ns`), compiling to a native binary with no JVM.
 
 ## Documentation and Guides
 
