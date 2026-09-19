@@ -129,7 +129,7 @@ Projects maintained at [jlt-commons](https://jlt-commons.github.io), a community
 
 ### Machine Learning
 
-- [laya-jolt](https://github.com/jlt-commons/laya-jolt) - Pure-Clojure inference for the [Laya](https://huggingface.co/convaiinnovations/laya) decision models: ModernBERT and mmBERT encoders plus a decision head, scorer and act head, f32 end to end with no JVM and no Python. Reproduces the Python package's answers across all three checkpoints and routes per request the way its `Router` does.
+- [lev](https://github.com/jlt-commons/lev) - Pure-Clojure inference for the [Laya](https://huggingface.co/convaiinnovations/laya) decision models: ModernBERT and mmBERT encoders plus a decision head, scorer and act head, f32 end to end with no JVM and no Python. Reproduces the Python package's answers across all three checkpoints and routes per request the way its `Router` does.
 
 ## Applications
 
