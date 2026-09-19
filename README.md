@@ -127,6 +127,10 @@ Projects maintained at [jlt-commons](https://jlt-commons.github.io), a community
 
 - [aws-api-jolt](https://github.com/jlt-commons/aws-api-jolt) - Runs cognitect's [aws-api](https://github.com/cognitect-labs/aws-api) unmodified from Maven, supplying the HTTP client it expects over [http-client](https://github.com/jolt-lang/http-client) plus the classpath resource that makes it discoverable. All four AWS wire protocols are exercised against live AWS.
 
+### Machine Learning
+
+- [laya-jolt](https://github.com/jlt-commons/laya-jolt) - Pure-Clojure inference for the [Laya](https://huggingface.co/convaiinnovations/laya) decision models: ModernBERT and mmBERT encoders plus a decision head, scorer and act head, f32 end to end with no JVM and no Python. Reproduces the Python package's answers across all three checkpoints and routes per request the way its `Router` does.
+
 ## Applications
 
 Independently maintained software built with Jolt, hosted and maintained outside jlt-commons and jolt-lang.
