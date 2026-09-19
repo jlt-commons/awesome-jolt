@@ -123,6 +123,10 @@ Projects maintained at [jlt-commons](https://jlt-commons.github.io), a community
 
 - [ebb](https://github.com/jlt-commons/ebb) - A port of [missionary](https://github.com/leonoel/missionary): composable tasks and flows with real cancellation and glitch-free dataflow, running on Chez fibers.
 
+### Cloud Services
+
+- [aws-api-jolt](https://github.com/jlt-commons/aws-api-jolt) - Runs cognitect's [aws-api](https://github.com/cognitect-labs/aws-api) unmodified from Maven, supplying the HTTP client it expects over [http-client](https://github.com/jolt-lang/http-client) plus the classpath resource that makes it discoverable. All four AWS wire protocols are exercised against live AWS.
+
 ## Applications
 
 Independently maintained software built with Jolt, hosted and maintained outside jlt-commons and jolt-lang.
