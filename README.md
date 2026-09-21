@@ -144,6 +144,7 @@ Independently maintained software built with Jolt, hosted and maintained outside
 - [frq](https://gitlab.com/nandithebull/frq) - A [freeq](https://github.com/codegod100/freeq) IRC client, its screens built as [glimmer](https://github.com/jolt-lang/glimmer) components over Vidya/egui, ported from a Rust client of the same shape. Runs unchanged on desktop, in a terminal, and on Android.
 - [jolt-native](https://gitlab.com/nandithebull/jolt-native) - Native capabilities for Jolt, one shared object per capability: a retained-tree UI ABI over egui (also paintable to a terminal) and freeq's AV media plane over MoQ. What frq links against.
 - [jolt-edge](https://gitlab.com/nandithebull/jolt-edge) - A Clojure HTTP server that runs as a WebAssembly module on [Wasmer Edge](https://wasmer.io): Jolt compiled to `wasm32-wasix`, with the source compiled on cold start and a second variant compiled ahead of time for comparison. No JVM, no JavaScript, no build step.
+- [clojev](https://github.com/antlobach/clojev) - An unofficial Clojure SDK for TypeSafe's System One API: typed Noul, Choice and Score questions, validated answers, and retries with exponential backoff that respect `Retry-After`. The core is portable `.cljc` over a swappable transport, so the same code runs on the JVM over `java.net.http` or on Jolt over [http-client](https://github.com/jolt-lang/http-client).
 
 ## JVM and Clojure Libraries That Run on Jolt
 
