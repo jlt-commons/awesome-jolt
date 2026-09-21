@@ -18,7 +18,7 @@ or jump straight to [Getting Started](https://jolt-lang.net/docs/getting-started
 - [Getting Started](#getting-started)
 - [Official Libraries](#official-libraries)
 - [Community Projects](#community-projects)
-- [Applications](#applications)
+- [Applications and Libraries](#applications-and-libraries)
 - [JVM and Clojure Libraries That Run on Jolt](#jvm-and-clojure-libraries-that-run-on-jolt)
 - [Tooling, Testing and Examples](#tooling-testing-and-examples)
 - [Documentation and Guides](#documentation-and-guides)
@@ -131,7 +131,7 @@ Projects maintained at [jlt-commons](https://jlt-commons.github.io), a community
 
 - [lev](https://github.com/jlt-commons/lev) - Pure-Clojure inference for the [Laya](https://huggingface.co/convaiinnovations/laya) decision models: ModernBERT and mmBERT encoders plus a decision head, scorer and act head, f32 end to end with no JVM and no Python. Reproduces the Python package's answers across all three checkpoints and routes per request the way its `Router` does.
 
-## Applications
+## Applications and Libraries
 
 Independently maintained software built with Jolt, hosted and maintained outside jlt-commons and jolt-lang.
 
