@@ -3,11 +3,14 @@
 ;;   bb site:build        build the documentation site into _site/
 ;;   bb site:serve [port] build and serve at http://localhost:3000
 ;;   bb site:clean        delete the _site/ build output
+;;   bb site:counts       check the homepage tag cloud against README.md
 ;;
-;; This project is a curated list, not code — these tasks exist only for
-;; local preview of the docs site. It's built and published by CI
+;; This project is a curated list, not code — these tasks exist for local
+;; preview of the docs site, and for the one assertion the site build can't
+;; make about itself. It's built and published by CI
 ;; (.github/workflows/site.yml, which pins an engine tag), so a checkout of
-;; the engine on disk is needed only here, never in CI.
+;; the engine on disk is needed only here, never in CI. site:counts is the
+;; exception: it needs neither the engine nor a build.
 ;; NOTE: task bodies are read by babashka's EDN reader, which does NOT support
 ;; #"regex", @deref, or #(...) reader macros. Use (fn [x] ...) etc.
 {:min-bb-version "1.3.0"
@@ -57,4 +60,11 @@
 
   site:clean
   {:doc "Delete the _site/ build output"
-   :task (site-task "clean")}}}
+   :task (site-task "clean")}
+
+  ;; Needs no docs-engine and no build: it reads README.md and the template
+  ;; straight off disk. CI runs the same script under jolt, from
+  ;; docs/check-site.sh.
+  site:counts
+  {:doc "Check the homepage tag cloud against the real README section sizes"
+   :task (load-file "scripts/check_counts.clj")}}}

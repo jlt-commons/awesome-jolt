@@ -43,4 +43,20 @@ if grep -ohE '(href|src)="/[^"]*"' "$out"/index.html "$out"/404.html \
   exit 1
 fi
 
+# Everything above proves the tag cloud is PRESENT. Its numbers are a separate
+# question, and a hand-kept one: each category is sized by how many entries sit
+# under it in the README. A stale count renders perfectly and simply misinforms,
+# so nothing here would catch it. This re-tallies the README and fails on drift.
+#
+# jolt first, because that is what the shared workflow installs; bb locally.
+# Neither present is an error rather than a skip, since a check that quietly
+# stops running is worse than one that was never added.
+if command -v jolt >/dev/null 2>&1; then
+  jolt run scripts/check_counts.clj
+elif command -v bb >/dev/null 2>&1; then
+  bb scripts/check_counts.clj
+else
+  echo "cannot tally the tag cloud: neither jolt nor bb is on PATH"; exit 1
+fi
+
 echo "build looks correct: homepage, tag cloud and 404 page all present, every URL under $BASE_PATH"

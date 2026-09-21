@@ -19,8 +19,11 @@
    sections had drifted; Applications and Libraries grew 3 -> 11 and
    moved up a tier). Tiers are tag-1 up to 5, tag-2 6-15, tag-3 16-35,
    tag-4 above that; re-tally again if the list grows enough to shift
-   one. Uses only the engine's own theme tokens, so it follows
-   light/dark exactly like the rest of the page. #}
+   one. `bb site:counts` checks every number and tier below against the
+   README and fails on drift, and docs/check-site.sh runs it in CI, so
+   this comment is no longer the only thing keeping the tally honest.
+   Uses only the engine's own theme tokens, so it follows light/dark
+   exactly like the rest of the page. #}
 {% block head %}
 <style>
   .tag-cloud {
