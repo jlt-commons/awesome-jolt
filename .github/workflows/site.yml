@@ -30,10 +30,11 @@ jobs:
     with:
       base-path: /awesome-jolt
       # Pinned rather than trusting the shared workflow's own default.
+      # v0.4.2 closes search on Tab-out and titles untitled pages by slug.
       # v0.4.1 fixes search-hit styling; v0.4.0 added nav search.
       # v0.3.2 fixes `jolt run build`/`clean` (docs-engine#3); v0.3.1
       # added heading anchors, v0.3.0 the default Contributing page.
-      docs-engine-ref: v0.4.1
+      docs-engine-ref: v0.4.2
     permissions:
       contents: read
       pages: write
