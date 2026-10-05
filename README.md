@@ -46,7 +46,6 @@ First-party libraries maintained in the [jolt-lang](https://github.com/jolt-lang
 
 - [db](https://github.com/jolt-lang/db) - `jdbc.core` for Jolt: PostgreSQL and SQLite access binding `libpq` and `libsqlite3` through the FFI, running real `clojure.jdbc` and a `next.jdbc`-shaped surface with no JVM.
 - [doltera](https://github.com/jolt-lang/doltera) - A pure-Jolt MySQL-protocol client for [Dolt](https://github.com/dolthub/dolt), speaking directly to `dolt sql-server` over TCP: handshake, `mysql_native_password` auth, packet framing, and prepared statements.
-- [duratom](https://github.com/jolt-lang/duratom) - A durable, dereffable atom that persists every mutation to a pluggable backend. It implements glimmer's `IReactiveCell` protocol, so it drops into a glimmer app unchanged.
 
 ### Networking and Web
 
@@ -60,7 +59,6 @@ First-party libraries maintained in the [jolt-lang](https://github.com/jolt-lang
 - [jolt-fressian](https://github.com/jolt-lang/jolt-fressian) - [Fressian](https://github.com/Datomic/fressian) binary serialization, the format Datomic and `clojure.data.fressian` use, wire-compatible both ways and gated against a real JVM Fressian reader and writer.
 - [xml](https://github.com/jolt-lang/xml) - `clojure.xml/parse` over libxml2, plus a `clojure.data.xml` emit API.
 - [yaml](https://github.com/jolt-lang/yaml) - YAML load and dump over the system libyaml, with `jolt.yaml` and `clj-yaml.core` compatible APIs.
-- [instaparse](https://github.com/jolt-lang/instaparse) - A port of [Instaparse](https://github.com/Engelberg/instaparse): EBNF and ABNF grammars turned into parsers, with left-recursive and ambiguous grammar support, hiccup and enlive output, and detailed error reporting.
 
 ### Cryptography
 
@@ -69,12 +67,7 @@ First-party libraries maintained in the [jolt-lang](https://github.com/jolt-lang
 ### Logging Metrics and Tracing
 
 - [logging](https://github.com/jolt-lang/logging) - A logging API with a native backend that drives `clojure.tools.logging`.
-- [mulog](https://github.com/jolt-lang/mulog) - A port of [BrunoBonacci/mulog](https://github.com/BrunoBonacci/mulog): structured event logging with global and lexical context, tracing with flake trace IDs, duration, and error capture, buffered dispatch to publishers.
 - [otel](https://github.com/jolt-lang/otel) - An OpenTelemetry SDK: tracing (`with-span`, W3C Trace Context propagation) and metrics (counters, histograms), exported over OTLP. Reads the standard `OTEL_*` environment variables, and every API has a no-op fallback.
-
-### Structured Concurrency
-
-- [tapestry](https://github.com/jolt-lang/tapestry) - Structured concurrency primitives for Clojure on Jolt, backed by `core.async` fiber handles rather than manifold. Marked pre-1.0.
 
 ### Date and Time
 
@@ -101,16 +94,19 @@ Glimmer is Jolt's reactive GUI toolkit. One portable core plus a backend per pla
 
 ## Community Projects
 
-Projects maintained at [jlt-commons](https://jlt-commons.github.io), a community-led home for adopted Jolt libraries and for new work the core team doesn't want to own directly. Six of these arrived by transfer from their original maintainer, with stars, issues, and history intact; two were started here directly by Jolt's author. Each keeps its own release cadence and publishes its own docs at `jlt-commons.github.io/<repo>/`.
+Projects maintained at [jlt-commons](https://jlt-commons.github.io), a community-led home for adopted Jolt libraries and for new work the core team doesn't want to own directly. Six of these arrived by transfer from their original maintainer, with stars, issues, and history intact. Four moved over from jolt-lang, and their old URLs redirect. Fourteen were started here, eight of them by Jolt's author. Each keeps its own release cadence, and most publish their own docs at `jlt-commons.github.io/<repo>/`.
 
 ### Graphics and Games
 
-- [raylib-jlt](https://github.com/jlt-commons/raylib-jlt) - 119 [raylib](https://www.raylib.com) examples in native Clojure, calling the system `libraylib` over its C ABI through `jolt.ffi`. [Docs and gallery](https://jlt-commons.github.io/raylib-jlt/).
+- [raylib-jlt](https://github.com/jlt-commons/raylib-jlt) - [raylib](https://www.raylib.com) bindings in native Clojure, calling the system `libraylib` over its C ABI through `jolt.ffi`, with a keyword-argument drawing API on top. [Docs](https://jlt-commons.github.io/raylib-jlt/).
+- [raylib-jolt-demo](https://github.com/jlt-commons/raylib-jolt-demo) - 187 raylib examples built on raylib-jlt, each one its own small runnable project. [Docs and gallery](https://jlt-commons.github.io/raylib-jolt-demo/).
 - [raygui-jlt](https://github.com/jlt-commons/raygui-jlt) - 24 examples of raygui, raylib's immediate-mode GUI library, bound the same way. [Docs and gallery](https://jlt-commons.github.io/raygui-jlt/).
-- [raylib-ios](https://github.com/jlt-commons/raylib-ios) - raylib and SDL2 running on a physical iPhone as portable bytecode with no JIT, since iOS forbids generating code at runtime. Seventeen scenes at 60 fps. Parts derive from a demo repository whose own license request is still pending; see the repo's `NOTICE`. [Docs and gallery](https://jlt-commons.github.io/raylib-ios/).
-- [raylib-android](https://github.com/jlt-commons/raylib-android) - raylib on an Android phone as native arm64 code, with no JVM, Kotlin, or Java anywhere in the app. Seventeen scenes under an owner loop of about thirty lines.
+- [raylib-ios](https://github.com/jlt-commons/raylib-ios) - raylib and SDL2 running on a physical iPhone as portable bytecode with no JIT, since iOS forbids generating code at runtime. The platform: host loop, bindings, and the build, deploy, and live tools. [Docs](https://jlt-commons.github.io/raylib-ios/).
+- [raylib-ios-demo](https://github.com/jlt-commons/raylib-ios-demo) - What runs on raylib-ios: 137 scenes, each a sub-project that builds an iPhone app of its own, plus a gallery app holding them all. [Docs and gallery](https://jlt-commons.github.io/raylib-ios-demo/).
+- [raylib-android](https://github.com/jlt-commons/raylib-android) - raylib on an Android phone as native arm64 code, with no JVM, Kotlin, or Java anywhere in the app. Seventeen scenes under an owner loop of about thirty lines. [Docs](https://jlt-commons.github.io/raylib-android/).
+- [graviton](https://github.com/jlt-commons/graviton) - A physics game where you place gravitational attractors to steer a ship toward prizes and away from death zones. A Jolt and raylib port of a 2018 ClojureScript game, with its field math checked by [writ](https://github.com/jlt-commons/writ).
 
-### GUI Rendering
+### User Interfaces
 
 - [glitter-core](https://github.com/jlt-commons/glitter-core) - The natives-free two-thirds of glitter: the [Replicant](https://github.com/cjohansen/replicant)-style reconciler and `IRender`/`IMemory` protocols, with no GTK4/AppKit/anything-else toolkit dependency at all. What glitter, glitter-uikit, and uikit-demo all build on. [Docs](https://jlt-commons.github.io/glitter-core/).
 - [nexus-jolt](https://github.com/jlt-commons/nexus-jolt) - A Jolt port of [nexus](https://github.com/cjohansen/nexus): data-driven action/effect/placeholder dispatch. Not GUI-specific, but its only consumers today are glitter and friends, so it's listed here. [Docs](https://jlt-commons.github.io/nexus-jolt/).
@@ -118,10 +114,26 @@ Projects maintained at [jlt-commons](https://jlt-commons.github.io), a community
 - [glitter-gl](https://github.com/jlt-commons/glitter-gl) - OpenGL geometry, matrices, and shaders for glitter, plus a `:gl-area` widget to draw them in. [Docs](https://jlt-commons.github.io/glitter-gl/).
 - [glitter-uikit](https://github.com/jlt-commons/glitter-uikit) - The same renderer model driving native macOS `NSView` widgets through AppKit instead of GTK4. [Docs](https://jlt-commons.github.io/glitter-uikit/).
 - [uikit-demo](https://github.com/jlt-commons/uikit-demo) - A demo of glitter-uikit: a hub of live example windows (counter, currency converter, live FX, particle toy) built as a real macOS app bundle. [Docs](https://jlt-commons.github.io/uikit-demo/).
+- [ftxui-jolt](https://github.com/jlt-commons/ftxui-jolt) - A reagent-style API over [FTXUI](https://github.com/ArthurSonzogni/FTXUI), the C++ terminal UI library: components as functions returning hiccup, rendered through FTXUI's own event loop, focus handling, and mouse support.
 
 ### Concurrency
 
-- [ebb](https://github.com/jlt-commons/ebb) - A port of [missionary](https://github.com/leonoel/missionary): composable tasks and flows with real cancellation and glitch-free dataflow, running on Chez fibers.
+- [ebb](https://github.com/jlt-commons/ebb) - A port of [missionary](https://github.com/leonoel/missionary): composable tasks and flows with real cancellation and glitch-free dataflow, running on Chez fibers. [Docs](https://jlt-commons.github.io/ebb/).
+- [ensemble](https://github.com/jlt-commons/ensemble) - Erlang processes and the OTP behaviours on Jolt's native fibers: links, exit signals, monitors, selective receive, `gen_server`, `gen_statem`, `gen_event`, supervisors, and applications. Distribution is not part of it yet.
+- [tapestry](https://github.com/jlt-commons/tapestry) - Structured concurrency primitives for Clojure on Jolt, backed by `core.async` fiber handles rather than manifold. Marked pre-1.0.
+
+### Storage
+
+- [duratom](https://github.com/jlt-commons/duratom) - A durable, dereffable atom that persists every mutation to a pluggable backend. It implements glimmer's `IReactiveCell` protocol, so it drops into a glimmer app unchanged.
+
+### Parsing and Translation
+
+- [instaparse](https://github.com/jlt-commons/instaparse) - A port of [Instaparse](https://github.com/Engelberg/instaparse): EBNF and ABNF grammars turned into parsers, with left-recursive and ambiguous grammar support, hiccup and enlive output, and detailed error reporting.
+- [clj-to-ys](https://github.com/jlt-commons/clj-to-ys) - Translates Clojure source into idiomatic [YS (YAMLScript)](https://yamlscript.org), as a CLI or a library, built on the instaparse port.
+
+### Logging
+
+- [mulog](https://github.com/jlt-commons/mulog) - A port of [BrunoBonacci/mulog](https://github.com/BrunoBonacci/mulog): structured event logging with global and lexical context, tracing with flake trace IDs, duration, and error capture, buffered dispatch to publishers.
 
 ### Cloud Services
 
@@ -130,6 +142,10 @@ Projects maintained at [jlt-commons](https://jlt-commons.github.io), a community
 ### Machine Learning
 
 - [lev](https://github.com/jlt-commons/lev) - Pure-Clojure inference for the [Laya](https://huggingface.co/convaiinnovations/laya) decision models: ModernBERT and mmBERT encoders plus a decision head, scorer and act head, f32 end to end with no JVM and no Python. Reproduces the Python package's answers across all three checkpoints and routes per request the way its `Router` does.
+
+### Specs and Verification
+
+- [writ](https://github.com/jlt-commons/writ) - Checks plain Clojure against a spec of what the code is for: signatures for the public functions plus laws run through test.check, with static rules taken from [Bend](https://github.com/HigherOrderCO/Bend). Built as a gate for code an LLM writes.
 
 ## Applications and Libraries
 
