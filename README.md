@@ -277,6 +277,9 @@ Other projects worth knowing about while exploring the Jolt ecosystem.
 - [jank](https://github.com/jank-lang/jank) - A native-code Clojure dialect on LLVM. Its `clojure.core` compliance suite is what [clojure-test-suite](https://github.com/jolt-lang/clojure-test-suite) started from.
 - [clj-commons](https://github.com/clj-commons) - The community-maintained home for Clojure/JVM libraries. jlt-commons is modeled openly on it.
 - [Clojure](https://clojure.org) - The language Jolt implements, still running on the JVM.
+- [raylib-jnk](https://github.com/b12n-oss/raylib-jnk) - A guide to calling C and C++ from [jank](https://jank-lang.org), written while porting raylib's examples. The 213 ported examples live in [raylib-jank-demo](https://github.com/b12n-oss/raylib-jank-demo), one small project each, so they sit side by side with [raylib-jolt-demo](https://github.com/jlt-commons/raylib-jolt-demo). [Guide](https://b12n-oss.github.io/raylib-jnk/) and [gallery](https://b12n-oss.github.io/raylib-jank-demo/).
+- [raygui-jnk](https://github.com/b12n-oss/raygui-jnk) - The 24 [raygui-jlt](https://github.com/jlt-commons/raygui-jlt) examples ported to jank, with the same names and descriptions so the two read as one library through two Clojure implementations. [Docs and gallery](https://b12n-oss.github.io/raygui-jnk/).
+- [raylib-clj](https://github.com/b12n-oss/raylib-clj) - raylib bindings for Clojure on the JVM, calling the C library through [coffi](https://github.com/IGJoshua/coffi) over JDK 22's foreign-function API. Its 113 examples moved to [raylib-clj-demo](https://github.com/b12n-oss/raylib-clj-demo), laid out the same way as the Jolt and jank demos. [Docs](https://b12n-oss.github.io/raylib-clj/) and [gallery](https://b12n-oss.github.io/raylib-clj-demo/).
 
 ## Community and Support
 
