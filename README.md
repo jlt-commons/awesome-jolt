@@ -164,6 +164,7 @@ Independently maintained software built with Jolt, hosted and maintained outside
 - [jolt-edge](https://gitlab.com/nandithebull/jolt-edge) - A Clojure HTTP server that runs as a WebAssembly module on [Wasmer Edge](https://wasmer.io): Jolt compiled to `wasm32-wasix`, with the source compiled on cold start and a second variant compiled ahead of time for comparison. No JVM, no JavaScript, no build step.
 - [clojev](https://github.com/antlobach/clojev) - An unofficial Clojure SDK for TypeSafe's System One API: typed Noul, Choice and Score questions, validated answers, and retries with exponential backoff that respect `Retry-After`. The core is portable `.cljc` over a swappable transport, so the same code runs on the JVM over `java.net.http` or on Jolt over [http-client](https://github.com/jolt-lang/http-client).
 - [farolero](https://github.com/antlobach/farolero) - A Jolt port of Farolero, implementing Common Lisp-style conditions, handlers, restarts, and interactive recovery while preserving JVM, ClojureScript, and Babashka support.
+- [go-to-sleep](https://github.com/didibus/go-to-sleep) - A macOS menu-bar app that enforces a weekly bedtime schedule by locking the session during sleep blocks, and locking it again after each unlock. A root LaunchDaemon owns the schedule, so quitting the app doesn't stop enforcement, and once a block is within eight hours the schedule can only grow. Built and packaged as an Apple silicon `.pkg` with Jolt.
 
 ## JVM and Clojure Libraries That Run on Jolt
 
