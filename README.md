@@ -94,7 +94,7 @@ Glimmer is Jolt's reactive GUI toolkit. One portable core plus a backend per pla
 
 ## Community Projects
 
-Projects maintained at [jlt-commons](https://jlt-commons.github.io), a community-led home for adopted Jolt libraries and for new work the core team doesn't want to own directly. Six of these arrived by transfer from their original maintainer, with stars, issues, and history intact. Four moved over from jolt-lang, and their old URLs redirect. Fourteen were started here, eight of them by Jolt's author. Each keeps its own release cadence, and most publish their own docs at `jlt-commons.github.io/<repo>/`.
+Projects maintained at [jlt-commons](https://jlt-commons.github.io), a community-led home for adopted Jolt libraries and for new work the core team doesn't want to own directly. Six of these arrived by transfer from their original maintainer, with stars, issues, and history intact. Four moved over from jolt-lang, and their old URLs redirect. Fifteen were started here, nine of them by Jolt's author. Each keeps its own release cadence, and most publish their own docs at `jlt-commons.github.io/<repo>/`.
 
 ### Graphics and Games
 
@@ -105,6 +105,7 @@ Projects maintained at [jlt-commons](https://jlt-commons.github.io), a community
 - [raylib-ios-demo](https://github.com/jlt-commons/raylib-ios-demo) - What runs on raylib-ios: 137 scenes, each a sub-project that builds an iPhone app of its own, plus a gallery app holding them all. [Docs and gallery](https://jlt-commons.github.io/raylib-ios-demo/).
 - [raylib-android](https://github.com/jlt-commons/raylib-android) - raylib on an Android phone as native arm64 code, with no JVM, Kotlin, or Java anywhere in the app. Seventeen scenes under an owner loop of about thirty lines. [Docs](https://jlt-commons.github.io/raylib-android/).
 - [graviton](https://github.com/jlt-commons/graviton) - A physics game where you place gravitational attractors to steer a ship toward prizes and away from death zones. A Jolt and raylib port of a 2018 ClojureScript game, with its field math checked by [writ](https://github.com/jlt-commons/writ).
+- [ents](https://github.com/jlt-commons/ents) - Bindings for [flecs](https://github.com/SanderMertens/flecs), the C entity component system, with an API modeled on [vybe](https://github.com/pfeodrippe/vybe). Components read and write as plain maps, and systems and observers are written as binding vectors over components. When a callback throws, the exception is rethrown from the `progress` or `set-c!` call that drove it, so the world stays usable.
 
 ### User Interfaces
 
