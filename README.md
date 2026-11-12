@@ -51,6 +51,7 @@ First-party libraries maintained in the [jolt-lang](https://github.com/jolt-lang
 
 - [http-client](https://github.com/jolt-lang/http-client) - An HTTP client over POSIX sockets, OpenSSL for TLS, and zlib. Runs `clj-http-lite` unmodified.
 - [ring-chez-adapter](https://github.com/jolt-lang/ring-chez-adapter) - A Ring adapter for serving HTTP, binding BSD sockets directly through the FFI, plus middleware whose Ring originals need a JVM library: multipart file uploads, gzip, and static files.
+- [multipart](https://github.com/jolt-lang/multipart) - An RFC 7578 `multipart/form-data` parser for Clojure and Jolt, ported from [defnull/multipart](https://github.com/defnull/multipart), with an incremental push parser for streaming a body chunk by chunk and a `parse-form-data` call for parsing it all at once.
 - [router](https://github.com/jolt-lang/router) - A routing trie that mirrors `reitit.Trie`, so `reitit-core` runs on Jolt unmodified.
 
 ### Serialization and Parsing
@@ -79,7 +80,7 @@ First-party libraries maintained in the [jolt-lang](https://github.com/jolt-lang
 
 ### Process and Shell
 
-- [process](https://github.com/jolt-lang/process) - The [babashka/process](https://github.com/babashka/process) library for shelling out and managing sub-processes.
+- [babashka/process](https://github.com/babashka/process) - Built into Jolt, so there's nothing to add to `deps.edn`. Jolt vendors the upstream library unchanged and loads it as `babashka.process` for shelling out and managing sub-processes. The old jolt-lang/process fork is gone now that Jolt reads the library's `:clj` branch.
 
 ### The Glimmer GUI Toolkit
 
@@ -88,13 +89,16 @@ Glimmer is Jolt's reactive GUI toolkit. One portable core plus a backend per pla
 - [glimmer](https://github.com/jolt-lang/glimmer) - The portable core: Reagent-style reactive atoms, components that return hiccup, and a reconciler that patches the live widget tree in place. Widgets come from a backend, so the same components render as GTK widgets or as text in a terminal.
 - [glimmer-gtk](https://github.com/jolt-lang/glimmer-gtk) - The GTK4 backend: widget constructors, prop setters and `:on-*` signals bound through the FFI, and the `g_application_run` app loop, including the main-thread marshalling that keeps nREPL-driven UI development safe.
 - [glimmer-tui](https://github.com/jolt-lang/glimmer-tui) - The terminal backend, over ncursesw: a widget set, box layout, painting, and an input loop with keyboard focus and mouse support. Needs nothing installed beyond what macOS and Linux already ship.
-- [glimmer-uikit](https://github.com/jolt-lang/glimmer-uikit) - The AppKit backend: the same hiccup renders as real macOS `NSWindow`/`NSStackView`/`NSButton` widgets, driven through the Objective-C runtime by a plain C FFI.
+- [glimmer-appkit](https://github.com/jolt-lang/glimmer-appkit) - The AppKit backend: the same hiccup renders as real macOS `NSWindow`/`NSStackView`/`NSButton` widgets, driven through the Objective-C runtime by a plain C FFI.
+- [glimmer-uikit](https://github.com/jolt-lang/glimmer-uikit) - The UIKit backend for iPhone: hiccup renders as real `UIStackView`/`UILabel`/`UIButton` views, through the Objective-C runtime with no Objective-C source to build.
+- [glimmer-android](https://github.com/jolt-lang/glimmer-android) - The Android backend: hiccup renders into real Android Views such as `LinearLayout`, `TextView` and `Button`, through a small C half that makes the JNI calls. The screens compile into an Android shared library and run on the UI thread.
+- [glimmer-qt](https://github.com/jolt-lang/glimmer-qt) - A Qt Quick backend, extracted from [snitt](https://github.com/isaksky/snitt). Its native bridge builds on first use from a git dep, given Qt 6 and a C++17 compiler.
 - [glimmer-gl](https://github.com/jolt-lang/glimmer-gl) - OpenGL primitives for glimmer: composable 3D geometry and shaders as data, plus `:gl-area` and `:scale` widgets registered into glimmer-gtk.
 - [glimmer-datastar](https://github.com/jolt-lang/glimmer-datastar) - A web backend over [Datastar](https://data-star.dev): implements the server side of the Datastar v1.0 wire protocol, JSON signals on actions and `datastar-patch-*` SSE events, with no Ring middleware stack needed.
 
 ## Community Projects
 
-Projects maintained at [jlt-commons](https://jlt-commons.github.io), a community-led home for adopted Jolt libraries and for new work the core team doesn't want to own directly. Six of these arrived by transfer from their original maintainer, with stars, issues, and history intact. Four moved over from jolt-lang, and their old URLs redirect. Fifteen were started here, nine of them by Jolt's author. Each keeps its own release cadence, and most publish their own docs at `jlt-commons.github.io/<repo>/`.
+Projects maintained at [jlt-commons](https://jlt-commons.github.io), a community-led home for adopted Jolt libraries and for new work the core team doesn't want to own directly. Six of these arrived by transfer from their original maintainer, with stars, issues, and history intact. Four moved over from jolt-lang, and their old URLs redirect. Twenty-seven were started here, twenty of them by Jolt's author. Each keeps its own release cadence, and thirteen publish their own docs at `jlt-commons.github.io/<repo>/`.
 
 ### Graphics and Games
 
@@ -106,6 +110,8 @@ Projects maintained at [jlt-commons](https://jlt-commons.github.io), a community
 - [raylib-android](https://github.com/jlt-commons/raylib-android) - raylib on an Android phone as native arm64 code, with no JVM, Kotlin, or Java anywhere in the app. Seventeen scenes under an owner loop of about thirty lines. [Docs](https://jlt-commons.github.io/raylib-android/).
 - [graviton](https://github.com/jlt-commons/graviton) - A physics game where you place gravitational attractors to steer a ship toward prizes and away from death zones. A Jolt and raylib port of a 2018 ClojureScript game, with its field math checked by [writ](https://github.com/jlt-commons/writ).
 - [ents](https://github.com/jlt-commons/ents) - Bindings for [flecs](https://github.com/SanderMertens/flecs), the C entity component system, with an API modeled on [vybe](https://github.com/pfeodrippe/vybe). Components read and write as plain maps, and systems and observers are written as binding vectors over components. When a callback throws, the exception is rethrown from the `progress` or `set-c!` call that drove it, so the world stays usable.
+- [slipstream](https://github.com/jlt-commons/slipstream) - GPU vector rendering over [Slughorn](https://github.com/AlphaPixel/slughorn): a declarative scene compiler, a reference GLFW renderer, and an incremental glimmer backend with gradients, masks, compositing, SDF/MSDF and shader effects.
+- [upbge-jolt](https://github.com/jlt-commons/upbge-jolt) - A Jolt nREPL inside the UPBGE/Blender game engine in place of its Python API, so CIDER, Calva or Cursive can evaluate against the running editor or game.
 
 ### User Interfaces
 
@@ -116,6 +122,7 @@ Projects maintained at [jlt-commons](https://jlt-commons.github.io), a community
 - [glitter-uikit](https://github.com/jlt-commons/glitter-uikit) - The same renderer model driving native macOS `NSView` widgets through AppKit instead of GTK4. [Docs](https://jlt-commons.github.io/glitter-uikit/).
 - [uikit-demo](https://github.com/jlt-commons/uikit-demo) - A demo of glitter-uikit: a hub of live example windows (counter, currency converter, live FX, particle toy) built as a real macOS app bundle. [Docs](https://jlt-commons.github.io/uikit-demo/).
 - [ftxui-jolt](https://github.com/jlt-commons/ftxui-jolt) - A reagent-style API over [FTXUI](https://github.com/ArthurSonzogni/FTXUI), the C++ terminal UI library: components as functions returning hiccup, rendered through FTXUI's own event loop, focus handling, and mouse support.
+- [glimmer-bui](https://github.com/jlt-commons/glimmer-bui) - A glimmer backend over [BUI](https://github.com/ppmpreetham/BUI), Blender's UI as a standalone C library. Panels, number sliders and color swatches, with damage-driven rendering that costs nothing while the app sits idle.
 
 ### Concurrency
 
@@ -140,33 +147,96 @@ Projects maintained at [jlt-commons](https://jlt-commons.github.io), a community
 
 - [aws-api-jolt](https://github.com/jlt-commons/aws-api-jolt) - Runs cognitect's [aws-api](https://github.com/cognitect-labs/aws-api) unmodified from Maven, supplying the HTTP client it expects over [http-client](https://github.com/jolt-lang/http-client) plus the classpath resource that makes it discoverable. All four AWS wire protocols are exercised against live AWS.
 
+### Java Interop
+
+- [jolt-openldk](https://github.com/jlt-commons/jolt-openldk) - Java libraries from Jolt with no JVM, by loading SBCL with [OpenLDK](https://github.com/atgreen/openldk) into the Jolt process and calling across a small C shim. Alpha.
+
 ### Machine Learning
 
 - [lev](https://github.com/jlt-commons/lev) - Pure-Clojure inference for the [Laya](https://huggingface.co/convaiinnovations/laya) decision models: ModernBERT and mmBERT encoders plus a decision head, scorer and act head, f32 end to end with no JVM and no Python. Reproduces the Python package's answers across all three checkpoints and routes per request the way its `Router` does.
 
+### Statistics and Geospatial
+
+- [augur](https://github.com/jlt-commons/augur) - Statistics for forecasting and for learning from outcomes, with no dependencies: online Bayesian posteriors with forgetting, calibration, logistic hazards, change-point detection and forecast scoring. The statistics core of [bayesian-news-model](https://github.com/yogthos/bayesian-news-model), taken out as its own library.
+- [dodeca](https://github.com/jlt-commons/dodeca) - A port of [A5](https://github.com/felixpalmer/a5), the equal-area pentagonal discrete global grid. It covers indexing, the cell hierarchy, cell measures and grid disks so far.
+
 ### Specs and Verification
 
 - [writ](https://github.com/jlt-commons/writ) - Checks plain Clojure against a spec of what the code is for: signatures for the public functions plus laws run through test.check, with static rules taken from [Bend](https://github.com/HigherOrderCO/Bend). Built as a gate for code an LLM writes.
+- [jolt-metrics](https://github.com/jlt-commons/jolt-metrics) - Code metrics for Clojure, Jolt and Scheme, from cyclomatic and cognitive complexity to Halstead, maintainability and coupling, led by a ranked refactoring queue. Reports come out as Markdown, EDN, JSON or one self-contained HTML page, and every metric is checked against a writ spec.
+
+### Agents and Editor Tooling
+
+- [jolt-lsp](https://github.com/jlt-commons/jolt-lsp) - A language server and agent toolset for Jolt projects. One pure engine works over an in-memory index, and MCP, a JSON CLI and LSP are thin transports over it, with a coding agent as the first consumer and the editor as the second.
+- [jolt-nrepl-mcp](https://github.com/jlt-commons/jolt-nrepl-mcp) - An MCP server, written in Jolt, that gives a coding agent a persistent nREPL session to evaluate, reload, run tests, repair syntax and make structural edits in.
+- [jolt-skills](https://github.com/jlt-commons/jolt-skills) - Agent skills for building on the jolt-lang and jlt-commons stack, covering projects and FFI through web, data, GUI, games and concurrency.
+- [nrepl-kimi-code-plugin](https://github.com/jlt-commons/nrepl-kimi-code-plugin) - A Kimi Code plugin, written in Jolt, that evaluates in a persistent Jolt nREPL session.
+- [overseer](https://github.com/jlt-commons/overseer) - A local-first agent loop. Sensors watch the screen, camera or clipboard, [lev](https://github.com/jlt-commons/lev) answers typed questions about what they saw, and a Jolt function acts on the answers.
 
 ## Applications and Libraries
 
 Independently maintained software built with Jolt, hosted and maintained outside jlt-commons and jolt-lang.
 
+### Runtimes and Interop
+
+- [champaca](https://github.com/b12n-oss/champaca) - A Java runtime inside Jolt, rebuilding Anthony Green's [OpenLDK](https://github.com/atgreen/openldk) on Jolt. JVM bytecode is translated to Chez Scheme and compiled to native code, and the classes are the JDK's own, so Jolt calls Java libraries in-process. Experimental.
+- [clinj](https://github.com/johnmn3/clinj) - Runs JVM Clojure libraries unchanged on non-JVM runtimes such as Jolt, jank, let-go and ClojureScript, by shimming the JDK API surface those libraries call rather than emulating a JVM.
+- [cohost.cljc](https://github.com/johnmn3/cohost.cljc) - A `clj`-style command, `cohost`, that runs Clojure 1.12's own `clojure.core` source unchanged on the runtime a project picks, Jolt among them, with `deps.edn`, Maven and git deps, a REPL and tools.build working as usual.
+- [jolt-edge](https://gitlab.com/nandithebull/jolt-edge) - A Clojure HTTP server that runs as a WebAssembly module on [Wasmer Edge](https://wasmer.io): Jolt compiled to `wasm32-wasix`, with the source compiled on cold start and a second variant compiled ahead of time for comparison. No JVM, no JavaScript, no build step.
+- [jolt-native](https://gitlab.com/nandithebull/jolt-native) - Native capabilities for Jolt, one shared object per capability: a retained-tree UI ABI over egui (also paintable to a terminal) and freeq's AV media plane over MoQ. What frq links against.
 - [lambda-mvp-jlt](https://github.com/b12n-oss/lambda-mvp-jlt) - An AWS Lambda custom runtime for Jolt, implementing the `provided.al2023` contract in about 60 lines of Clojure over Jolt's built-in HTTP client, with a benchmarking tool for cold vs. warm boot time.
 - [lambda-mvp-jnk](https://github.com/b12n-oss/lambda-mvp-jnk) - The same custom-runtime contract implemented in [jank](https://jank-lang.org) (native Clojure via C++/Clang/LLVM) and deployed as a Lambda container image rather than a zip, since jank's toolchain needs a newer glibc than AL2023 ships.
 - [lambda-mvp-cljs](https://github.com/b12n-oss/lambda-mvp-cljs) - The same family running on AWS Lambda's managed `nodejs24.x` runtime instead of a custom one, so the whole deployable is a `shadow-cljs`-compiled handler and a zip.
 - [lambda-mvp-rst](https://github.com/b12n-oss/lambda-mvp-rst) - A fork of `lambda-mvp-jlt` that embeds a Rust capability into the runtime via [jolt-diplomat](https://github.com/jolt-lang/jolt-diplomat): the handler builds its JSON response with real `serde_json` instead of hand-assembled strings, since Jolt has no JSON library of its own.
 - [lambda-mvp-bb](https://github.com/b12n-oss/lambda-mvp-bb) - The same family in [Babashka](https://babashka.org) via [blambda](https://github.com/jmglov/blambda). Nothing is compiled ahead of time here: the handler is `require`d and interpreted at cold start by Babashka's own SCI interpreter.
-- [raylib-pacman](https://github.com/b12n-oss/raylib-pacman) - The same Pac-Man written four times against [raylib](https://www.raylib.com), once each for babashka, Clojure on the JVM, [jank](https://jank-lang.org) and Jolt, whose copy binds [raylib-jlt](https://github.com/jlt-commons/raylib-jlt) over `jolt.ffi`. The game logic barely changes between the four, so what they really compare is the drawing layer and each runtime's own route into C. [Docs and demos](https://b12n-oss.github.io/raylib-pacman/).
-- [lisp-games](https://github.com/b12n-oss/lisp-games) - Two small graphical programs, borkdude's helitorus and [raylib](https://www.raylib.com)'s own mesh-instancing example, each ported to babashka, Clojure on the JVM, [jank](https://jank-lang.org) and Jolt, whose ports bind [raylib-jlt](https://github.com/jlt-commons/raylib-jlt). helitorus rebuilds and projects its whole surface every frame and reports compute and draw milliseconds separately, so what separates the four runtimes is measured rather than guessed. [Docs and demos](https://b12n-oss.github.io/lisp-games/).
-- [talk](https://gitlab.com/nandithebull/talk) - An XMPP server speaking RFC 6120 (core) and RFC 6121 (IM and presence): SASL, SCRAM-SHA-256, resource binding, rosters, presence, offline delivery, and a Prosody-inspired module architecture.
-- [frq](https://gitlab.com/nandithebull/frq) - A [freeq](https://github.com/codegod100/freeq) IRC client, its screens built as [glimmer](https://github.com/jolt-lang/glimmer) components over Vidya/egui, ported from a Rust client of the same shape. Runs unchanged on desktop, in a terminal, and on Android.
-- [jolt-native](https://gitlab.com/nandithebull/jolt-native) - Native capabilities for Jolt, one shared object per capability: a retained-tree UI ABI over egui (also paintable to a terminal) and freeq's AV media plane over MoQ. What frq links against.
-- [jolt-edge](https://gitlab.com/nandithebull/jolt-edge) - A Clojure HTTP server that runs as a WebAssembly module on [Wasmer Edge](https://wasmer.io): Jolt compiled to `wasm32-wasix`, with the source compiled on cold start and a second variant compiled ahead of time for comparison. No JVM, no JavaScript, no build step.
+
+### Libraries
+
+- [jolt-net](https://github.com/casselc/jolt-net) - A portable, dependency-free socket layer for Jolt: endpoints, name resolution, owned sockets and structured native errors. It was written because Jolt had three partial socket stacks, each duplicating the same raw FFI over `sockaddr` structs.
+- [yyjson-jolt](https://github.com/fricze/yyjson-jolt) - JSON over the [yyjson](https://github.com/ibireme/yyjson) C library, with a `clojure.data.json`-shaped API.
+- [jolt-sdl3](https://github.com/jbondeson/jolt-sdl3) - [SDL3](https://libsdl.org) bindings, all through `jolt.ffi`, so there's no JVM, JNI or C shim to build.
+- [joltc-jlt](https://github.com/noonian/joltc-jlt) - The [Jolt Physics](https://github.com/jrouwe/JoltPhysics) engine for the Jolt runtime, an unrelated project that happens to share the name, bound through [joltc](https://github.com/amerkoleci/joltc), the engine's C API.
+- [jolt-hegel](https://github.com/chucklehead-dev/jolt-hegel) - Property-based and stateful testing for Jolt, Babashka and JVM Clojure, backed by the [Hegel](https://hegel.dev/) generation and shrinking engine.
+- [jolt-otel-clickhouse](https://github.com/chucklehead-dev/jolt-otel-clickhouse) - Exports [otel](https://github.com/jolt-lang/otel) telemetry straight into an embedded, in-process chDB database, using ClickStack's column names so later ClickStack queries line up.
+- [jolt-otel-viewer](https://github.com/chucklehead-dev/jolt-otel-viewer) - A small, host-agnostic HTML renderer for OpenTelemetry traces and logs. The host hands it bounded trace summaries and trees, and it owns no database, server or exporter.
+- [oscope](https://github.com/chucklehead-dev/oscope) - An embeddable, local-first telemetry explorer for Jolt programs. One EDN contract drives a server-rendered web UI, a glitter/GTK UI and a glimmer UI over the chDB tables jolt-otel-clickhouse writes.
+- [eve](https://github.com/SeniorCareMarket/eve) - Persistent data structures in shared memory, the same values byte for byte across Jolt, the JVM, ClojureScript, babashka, ClojureCLR and more, so several runtimes can transact in parallel into one store.
+- [lasertag](https://github.com/paintparty/lasertag) - Categorizes values across Clojure dialects, with Jolt supported from v0.8.5 alongside Clojure, ClojureScript and Babashka.
 - [clojev](https://github.com/antlobach/clojev) - An unofficial Clojure SDK for TypeSafe's System One API: typed Noul, Choice and Score questions, validated answers, and retries with exponential backoff that respect `Retry-After`. The core is portable `.cljc` over a swappable transport, so the same code runs on the JVM over `java.net.http` or on Jolt over [http-client](https://github.com/jolt-lang/http-client).
 - [farolero](https://github.com/antlobach/farolero) - A Jolt port of Farolero, implementing Common Lisp-style conditions, handlers, restarts, and interactive recovery while preserving JVM, ClojureScript, and Babashka support.
+- [bayesian-news-model](https://github.com/yogthos/bayesian-news-model) - Models world events as a hierarchy of connected, self-exciting processes and forecasts how they're likely to evolve, learning online from events an LLM or an event dataset has coded from the news. The whole model is plain data.
+- [distilla](https://github.com/yogthos/distilla) - A Jolt port of [Memorilla](https://github.com/snap-stanford/memorilla), which compresses a whole document collection into a fixed number of question-dependent memory tokens for a frozen LLM. It trains the memory module as well as running it.
+
+### Agents and LLM Tools
+
+- [samizdat](https://github.com/samizdat-code/samizdat) - A self-hosting agentic harness for Clojure development. The harness is a live image, the agent's output space is the harness's own code, and the agent loop itself is data.
+- [kmet-agent](https://github.com/kmetia/kmet-agent) - A minimal coding agent in the spirit of [pi](https://pi.dev), with a terminal UI, streaming LLM conversations and a local tool loop. The same source runs on Babashka, Jolt and the JVM.
+- [brainyard-jolt](https://github.com/grumatic/brainyard-jolt) - byj, a coding agent whose loop is data: [brainyard](https://github.com/grumatic/brainyard)'s agent runtime ported to Jolt along the lines samizdat set out.
+- [march](https://github.com/not-unread/march) - DIRGE, an agentic coding loop and intent-grounding engine, translated from Rust to Jolt, covering its agent loop, compression engine and memory system.
+- [veriframe](https://github.com/yogthos/veriframe) - An OpenAI-compatible server that wraps a model in a claim-first verification loop, checking each step of its reasoning with Z3 and Prolog before letting a combinatorial lemma through.
+
+### Applications
+
+- [newsroom](https://github.com/yogthos/newsroom) - Reads the day's news from RSS feeds and web searches and has an LLM write a briefing on how politics, economics, and science and tech push on each other. Released as builds for macOS, Linux and Windows.
+- [almaz](https://github.com/yogthos/almaz) - AI denoise and sharpen for photos, camera RAW included, with a Blender-style UI through glimmer-bui. NAFNet models run through ONNX Runtime on Core ML, CUDA/TensorRT or the CPU.
+- [splat-painter](https://github.com/yogthos/splat-painter) - Paints an oil-painting version of an image out of 2D Gaussian splats, starting from large soft strokes and refining with finer, more translucent layers traced along the edges. Built with glimmer.
+- [talk](https://gitlab.com/nandithebull/talk) - An XMPP server speaking RFC 6120 (core) and RFC 6121 (IM and presence): SASL, SCRAM-SHA-256, resource binding, rosters, presence, offline delivery, and a Prosody-inspired module architecture.
+- [frq](https://gitlab.com/nandithebull/frq) - A [freeq](https://github.com/codegod100/freeq) IRC client, its screens built as [glimmer](https://github.com/jolt-lang/glimmer) components over Vidya/egui, ported from a Rust client of the same shape. Runs unchanged on desktop, in a terminal, and on Android.
 - [go-to-sleep](https://github.com/didibus/go-to-sleep) - A macOS menu-bar app that enforces a weekly bedtime schedule by locking the session during sleep blocks, and locking it again after each unlock. A root LaunchDaemon owns the schedule, so quitting the app doesn't stop enforcement, and once a block is within eight hours the schedule can only grow. Built and packaged as an Apple silicon `.pkg` with Jolt.
-- [snitt](https://github.com/isaksky/snitt/tree/jolt) - A screenshot and screen-recording app for macOS and Windows that lives in the menu bar or tray, with region capture, annotation, and video trimming. The `jolt` branch ports it from C++ to Jolt, and its UI runs on glimmer-qt, a [glimmer](https://github.com/jolt-lang/glimmer) backend over Qt Quick that ships in the same repo. The default branch is still the C++ app.
+- [snitt](https://github.com/isaksky/snitt/tree/jolt) - A screenshot and screen-recording app for macOS and Windows that lives in the menu bar or tray, with region capture, annotation, and video trimming. The `jolt` branch ports it from C++ to Jolt, and its UI runs on a [glimmer](https://github.com/jolt-lang/glimmer) backend over Qt Quick, since extracted as [glimmer-qt](https://github.com/jolt-lang/glimmer-qt). The default branch is still the C++ app.
+- [sound-jutsu](https://github.com/olivergg/sound-jutsu) - A soundboard for macOS with global hotkeys, in the spirit of Soundux, playing audio through a small C shim over [miniaudio](https://miniaud.io/).
+- [tinifu](https://github.com/devcarbon-com/tinifu) - Push-to-talk speech-to-text for Linux that types into whatever window has focus on any Wayland compositor, and also transcribes WAV files from the command line.
+- [metapaste](https://github.com/rvolz/metapaste) - A small paste server for thoughts, snippets and files, each stored with an explicit MIME type and a TTL, plus API-key access, Prometheus metrics and health endpoints. `jolt build` turns it into a single executable.
+- [zent](https://github.com/olivergg/zent) - An orchestrator for local dev stacks such as Docker Compose services, processes and Quarkus apps, driven by a catalog of plain EDN data, with a live dashboard.
+- [agentic-guitar-partner](https://github.com/gzmask/agentic-guitar-partner) - Guitar-input, pitch-detection and looping experiments around Jolt, Carp and Csound. The current focus is a looper, tested on hardware, that records and replays the real stereo signal from a CoreAudio input.
+
+### Graphics and Games
+
+- [raylib-pacman](https://github.com/b12n-oss/raylib-pacman) - The same Pac-Man written four times against [raylib](https://www.raylib.com), once each for babashka, Clojure on the JVM, [jank](https://jank-lang.org) and Jolt, whose copy binds [raylib-jlt](https://github.com/jlt-commons/raylib-jlt) over `jolt.ffi`. The game logic barely changes between the four, so what they really compare is the drawing layer and each runtime's own route into C. [Docs and demos](https://b12n-oss.github.io/raylib-pacman/).
+- [lisp-games](https://github.com/b12n-oss/lisp-games) - Two small graphical programs, borkdude's helitorus and [raylib](https://www.raylib.com)'s own mesh-instancing example, each ported to babashka, Clojure on the JVM, [jank](https://jank-lang.org) and Jolt, whose ports bind [raylib-jlt](https://github.com/jlt-commons/raylib-jlt). helitorus rebuilds and projects its whole surface every frame and reports compute and draw milliseconds separately, so what separates the four runtimes is measured rather than guessed. [Docs and demos](https://b12n-oss.github.io/lisp-games/).
+- [voxel-siege](https://github.com/yogthos/voxel-siege) - An artillery sandbox where you fire a cannon at a voxel castle, rendered with raylib over the C ABI.
+- [vector-feedback](https://github.com/jasalt/vector-feedback) - An interactive video-feedback instrument built on [slipstream](https://github.com/jlt-commons/slipstream). Previous frames are reprojected through a movable pinhole camera, so panning, rolling and dollying it produces spirals and tunnels.
+- [jolt-wasm-raylib-experiment](https://github.com/jasalt/jolt-wasm-raylib-experiment) - An experiment in running a Jolt app in the browser through Chez Scheme's Emscripten portable-bytecode target, rendering with raylib.
 
 ## JVM and Clojure Libraries That Run on Jolt
 
