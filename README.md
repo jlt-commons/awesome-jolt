@@ -194,6 +194,7 @@ Independently maintained software built with Jolt, hosted and maintained outside
 
 - [jolt-net](https://github.com/casselc/jolt-net) - A portable, dependency-free socket layer for Jolt: endpoints, name resolution, owned sockets and structured native errors. It was written because Jolt had three partial socket stacks, each duplicating the same raw FFI over `sockaddr` structs.
 - [yyjson-jolt](https://github.com/fricze/yyjson-jolt) - JSON over the [yyjson](https://github.com/ibireme/yyjson) C library, with a `clojure.data.json`-shaped API.
+- [jjson](https://github.com/antlobach/jjson) - JSON encoding and decoding for Jolt, backed by [yyjson](https://github.com/ibireme/yyjson), with string and UTF-8 byte-array APIs and exact-number options.
 - [jolt-sdl3](https://github.com/jbondeson/jolt-sdl3) - [SDL3](https://libsdl.org) bindings, all through `jolt.ffi`, so there's no JVM, JNI or C shim to build.
 - [joltc-jlt](https://github.com/noonian/joltc-jlt) - The [Jolt Physics](https://github.com/jrouwe/JoltPhysics) engine for the Jolt runtime, an unrelated project that happens to share the name, bound through [joltc](https://github.com/amerkoleci/joltc), the engine's C API.
 - [jolt-hegel](https://github.com/chucklehead-dev/jolt-hegel) - Property-based and stateful testing for Jolt, Babashka and JVM Clojure, backed by the [Hegel](https://hegel.dev/) generation and shrinking engine.
