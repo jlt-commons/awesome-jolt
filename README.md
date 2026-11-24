@@ -211,6 +211,16 @@ Independently maintained software built with Jolt, hosted and maintained outside
 - [bayesian-news-model](https://github.com/yogthos/bayesian-news-model) - Models world events as a hierarchy of connected, self-exciting processes and forecasts how they're likely to evolve, learning online from events an LLM or an event dataset has coded from the news. The whole model is plain data.
 - [distilla](https://github.com/yogthos/distilla) - A Jolt port of [Memorilla](https://github.com/snap-stanford/memorilla), which compresses a whole document collection into a fixed number of question-dependent memory tokens for a frozen LLM. It trains the memory module as well as running it.
 
+### Sandboxing and Virtualization
+
+- [jolt-oci](https://github.com/racklr-dev/jolt-oci) - OCI image pull and unpack for Jolt: a Docker Registry v2 client with token auth, multi-arch manifest/index resolution, layer download, and a pure-Clojure tar.gz unpacker. Boot-tested as the rootfs source for jolt-microvm.
+- [jolt-libkrun](https://github.com/racklr-dev/jolt-libkrun) - [libkrun](https://github.com/containers/libkrun) 2.0 bindings for Jolt: the builder/device C API (`krun_vmm_builder_*`, `krun_payload_*`, `krun_*_device_*`) through `jolt.ffi`'s by-value struct calls. The dlopen'd binding every jolt-microvm boot drives.
+- [jolt-pty](https://github.com/racklr-dev/jolt-pty) - POSIX pseudo-terminal primitives over `jolt.ffi`: `open_pty`, raw mode, termios save/restore, stdin redirect, and a console relay.
+- [jolt-exec](https://github.com/racklr-dev/jolt-exec) - An in-guest exec daemon for jolt-microvm: compile it to a standalone native binary, bake it into a glibc guest rootfs, boot it as the entrypoint, and run commands over a forwarded TCP port - no SSH handshake per call.
+- [jolt-tapmasq](https://github.com/racklr-dev/jolt-tapmasq) - Host-side networking for jolt-microvm sandboxes: a TAP + dnsmasq + nftables layer that gives a VM its network on libkrun 2.0, which dropped `port_map`/TSI. The guest DHCPs on a TAP and the host reaches it at its leased address.
+- [jolt-microvm](https://github.com/racklr-dev/jolt-microvm) - Boot and run OCI-image-backed libkrun microVMs over SSH from Jolt: exec commands, mount host directories, snapshot the rootfs, or run shell-less distroless images via direct exec. Layers a Nix devShell into the guest.
+- [jolt-sandbox](https://github.com/racklr-dev/jolt-sandbox) - A convenience layer over jolt-microvm for running code and commands in a microVM sandbox: one-shot run/lang for cold-boot code execution, and warm sessions or a pool for long-running agents.
+
 ### Agents and LLM Tools
 
 - [samizdat](https://github.com/samizdat-code/samizdat) - A self-hosting agentic harness for Clojure development. The harness is a live image, the agent's output space is the harness's own code, and the agent loop itself is data.
