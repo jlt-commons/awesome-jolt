@@ -210,6 +210,9 @@ Independently maintained software built with Jolt, hosted and maintained outside
 - [farolero](https://github.com/antlobach/farolero) - A Jolt port of Farolero, implementing Common Lisp-style conditions, handlers, restarts, and interactive recovery while preserving JVM, ClojureScript, and Babashka support.
 - [bayesian-news-model](https://github.com/yogthos/bayesian-news-model) - Models world events as a hierarchy of connected, self-exciting processes and forecasts how they're likely to evolve, learning online from events an LLM or an event dataset has coded from the news. The whole model is plain data.
 - [distilla](https://github.com/yogthos/distilla) - A Jolt port of [Memorilla](https://github.com/snap-stanford/memorilla), which compresses a whole document collection into a fixed number of question-dependent memory tokens for a frozen LLM. It trains the memory module as well as running it.
+- [jolt-admission](https://github.com/racklr-dev/jolt-admission) - Weighted admission control for a control plane. Requests are charged against a resource budget per resource, higher priority wins under contention, and a request that can't be granted before its timeout is denied. No runtime dependencies.
+- [jolt-cedar](https://github.com/racklr-dev/jolt-cedar) - Authorization decisions in the [Cedar](https://github.com/cedar-policy/cedar) policy language, through the `cedar-policy` crate's JSON entry points wrapped in a thin C ABI that Jolt binds with `jolt.ffi`. Needs a Rust toolchain to build the shim.
+- [jolt-markdown](https://github.com/racklr-dev/jolt-markdown) - A small markdown parser that returns blocks and inline spans and doesn't render anything, so a terminal, a web page or a console can each draw the same parse their own way. It also wraps spans to a column width and keeps their styles.
 
 ### Sandboxing and Virtualization
 
@@ -228,6 +231,7 @@ Independently maintained software built with Jolt, hosted and maintained outside
 - [brainyard-jolt](https://github.com/grumatic/brainyard-jolt) - byj, a coding agent whose loop is data: [brainyard](https://github.com/grumatic/brainyard)'s agent runtime ported to Jolt along the lines samizdat set out.
 - [march](https://github.com/not-unread/march) - DIRGE, an agentic coding loop and intent-grounding engine, translated from Rust to Jolt, covering its agent loop, compression engine and memory system.
 - [veriframe](https://github.com/yogthos/veriframe) - An OpenAI-compatible server that wraps a model in a claim-first verification loop, checking each step of its reasoning with Z3 and Prolog before letting a combinatorial lemma through.
+- [faraday](https://github.com/racklr-dev/faraday) - An agent harness with a control plane: it admits work against a resource budget, authorizes it with Cedar policy, runs it in libkrun microVMs and records every thread message in an append-only ledger, with a web console and a TUI to watch it live. A monorepo over jolt-microvm, jolt-cedar, jolt-oci and the rest of the racklr-dev libraries.
 
 ### Applications
 
