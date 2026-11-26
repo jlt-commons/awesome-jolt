@@ -243,6 +243,7 @@ Independently maintained software built with Jolt, hosted and maintained outside
 - [metapaste](https://github.com/rvolz/metapaste) - A small paste server for thoughts, snippets and files, each stored with an explicit MIME type and a TTL, plus API-key access, Prometheus metrics and health endpoints. `jolt build` turns it into a single executable.
 - [zent](https://github.com/olivergg/zent) - An orchestrator for local dev stacks such as Docker Compose services, processes and Quarkus apps, driven by a catalog of plain EDN data, with a live dashboard.
 - [agentic-guitar-partner](https://github.com/gzmask/agentic-guitar-partner) - Guitar-input, pitch-detection and looping experiments around Jolt, Carp and Csound. The current focus is a looper, tested on hardware, that records and replays the real stereo signal from a CoreAudio input.
+- [hyperjay](https://github.com/racklr-dev/hyperjay) - A barebones orchestrator for [jolt-microvm](https://github.com/racklr-dev/jolt-microvm) VMs on libkrun, with a GTK4 bench drawn by [glimmer-gtk](https://github.com/jolt-lang/glimmer-gtk). You pick a card, which is data describing a VM, then boot it, reboot it or stop it from the bench. Linux with KVM only.
 
 ### Graphics and Games
 
@@ -251,6 +252,7 @@ Independently maintained software built with Jolt, hosted and maintained outside
 - [voxel-siege](https://github.com/yogthos/voxel-siege) - An artillery sandbox where you fire a cannon at a voxel castle, rendered with raylib over the C ABI.
 - [vector-feedback](https://github.com/jasalt/vector-feedback) - An interactive video-feedback instrument built on [slipstream](https://github.com/jlt-commons/slipstream). Previous frames are reprojected through a movable pinhole camera, so panning, rolling and dollying it produces spirals and tunnels.
 - [jolt-wasm-raylib-experiment](https://github.com/jasalt/jolt-wasm-raylib-experiment) - An experiment in running a Jolt app in the browser through Chez Scheme's Emscripten portable-bytecode target, rendering with raylib.
+- [joltlibretro](https://github.com/racklr-dev/joltlibretro) - A [libretro](https://www.libretro.com) frontend that `dlopen`s a core and drives it over `jolt.ffi`. Its terminal frontend draws frames as ANSI half-blocks and reads the keyboard, enough to play the free NES game Super Tilt Bro. in a TUI.
 
 ## JVM and Clojure Libraries That Run on Jolt
 
